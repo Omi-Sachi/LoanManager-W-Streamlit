@@ -43,14 +43,14 @@ class LoanManager:
     # Get the current balance
         self.Balance = self.db.get_balance()
         return self.Balance
-# do not use
+# did not use
     def export_loan_History(self):
         # Returns list of all loans (list of tuples)
         loans = self.db .get_all_loans()
         if not loans:
             st.warning("No loans found.", icon="⁉️")
         return loans
-# do not use
+# did not use
     def delete_loan(self, loan_id):
         success = self.db.delete_val(loan_id)
         if success:
@@ -61,10 +61,12 @@ class LoanManager:
     def repay(self, loan_id, repay_amount):
         current_amount = self.db.get_value("Amount", loan_id)
 
+        # get_value will either return false or none depending on if it's an error or the loan deosn't exsist.
+        
         if current_amount is False or current_amount is None:
             st.warning("Please try again, that loan ID does not exist.", icon="⁉️")
             return
-
+    # Logic to edit, delete and categorize laons after a repayment is attempted 
         if repay_amount < current_amount:
             new_amount = current_amount - repay_amount
             success = self.db.edit_value(loan_id, "Amount", new_amount)
@@ -82,7 +84,7 @@ class LoanManager:
             st.warning("The amount you've set to repay is greater than the loaned amount. Please enter the correct amount.", icon="❌")
 
     def display_loans(self):
-        # Inject the scroll CSS once
+# Styling to create the scrollable container effect.
         scroll_style = """
             <style>
             .scrollable-div {
@@ -109,10 +111,11 @@ class LoanManager:
         # Convert to DataFrame
         df = pd.DataFrame(loans, columns=["Loan ID", "Amount", "Date", "Repay Date", "Loan Reason"])
         # Wrap DataFrame HTML in scrollable div
-        df_html = df.to_html(index=False)  # pandas → HTML
+        df_html = df.to_html(index=False)  
         st.markdown(f"<div class='scrollable-div'>{df_html}</div>", unsafe_allow_html=True)
 
         return df
+
 
 
 
