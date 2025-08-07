@@ -1,44 +1,45 @@
 # BankOfDad: A Loan management system Using streamlit
 
-![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/Hangman-w-Streamlit/main/images/StartGame.png)
+![BankOfDad:Front](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/Frontpage_1.png)
+![BankOfDad:Front](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/Frontpage_2.png)
 
-Compared to my hangman project this introduced me to more complex streamlit theme like, encorporating html, embedded giph and much more complex class.
-Aswell as that this was one of the firt times i've used sqlite, i have experience writing sql queries for my Alevel computer science but using those queries along side python 
-wa something i was not used to.
+Compared to my Hangman project, this introduced me to more complex Streamlit themes, like incorporating HTML, embedding media and much more complex OOP classes.
 
-This project really opened my eyes to what it means to be a software developer, epecially when trying to think of how a user will interact with the system you create.
-I like to be open and honest i did find myself during this project especially when it cam to the html and complex streamlit position rerering do documentation or AI models.
-I do try and limit the amount of questions i ask AI as i don't want to disempower myelf from coming up with the answer myself but at the same time acknowledge how using AI 
-has helped with my learning.
+This was also the first time I've used SQLite. I have experience writing SQL queries for my A-level computer science projects, but incorporating queries and Python was something I was not used to.
 
-Now that' out of the way heres how the Application work:
+This project opened my eyes to what it means to be a software developer, especially when trying to think of how a user will interact with the system I created.
 
-Users start of at the main area of the app a dashboard, which displays important information like:
-Rules, A running total value of all loans and a notice board, which displays over due and almost due loans.
+I like to be open and honest; I did find myself during this project, especially when it came to the HTML and complex Streamlit positioning, referring to documentation or AI models.
 
-Users can then navigate via a side bar to the payment area where they can:
-Insert a new loan and repay and exsisting loan aswell as view a table containing loan history.
+I do try and limit the number of questions I ask AI, as I don't want to disempower myself from coming up with the answer myself, but at the same time acknowledge how using AI has helped with my learning.
+
+Now that's out of the way. Here's how the application works:
+
+Users start off at the main area of the app, a dashboard, which displays important information like:
+
+Rules, A running total value of all loans and a notice board, which displays overdue and almost due loans.
+Users can then navigate via a sidebar to the payment area, where they can:
+Insert a new loan and repay an existing loan, as well as view a table containing loan history.
 
 
 ## My biggest challenges
 
 ### Persitance loan history:
-![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/Hangman-w-Streamlit/main/images/inputbox.png)
+![Scrollable_LoanHistory](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/Loan_DB.png)
 
-As discused prior streamlit runs your entire Python script from top to bottom every time something in the app’s state changes. A way to combat this is to use a session state which
-stores all data in your current session, this is great for a game like the hangman i bulit. but for a loan repayment system the loans must remain even if the tab closes,
-something that deson''t occure with session state. so to retain the loan history a moved from pandas which i built the whoel project in to SQlite,
+As discussed prior, Streamlit runs your entire Python script from top to bottom every time something in the app’s state changes. A way to combat this is to use a session state, which stores all data in your current session; this is great for a game like the hangman I built. But for a loan repayment system, the loans must remain even if the tab closes ~ something that doesn't occur with session state. So to retain the loan history, I moved from pandas, which I built the whole project in, to SQLite.
 
-Implementing this was not a big challenge and made me feel confident with using databases i other projects, the only hting i had to wrap my head around is cursor and connection
-A connection is  object created when you connect to your database file or server and cursor a object created from your connection to the server allowing you to make querie.
+Implementing this was not a big challenge and made me feel confident with using databases in other projects; the only thing I had to wrap my head around was cursor and connection.
+
+A connection is an object created when you connect to your database file or server, and a cursor is an object created from your connection to the server, allowing you to make queries.
 
 
 ### My usage of HTML
 
-![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/Hangman-w-Streamlit/main/images/Restartgame.png)
-I felt it was important for me to speak about my usage of HTML as this wa my first timecoding with it and it showed me that if i wanted to develop web application, 
-this is something i need to focus more time and effort on.
-So i've taken the inituitive to start a course on html adn wanted explain someone the HTML that apears in my code to further deepen my learning.
+![Repayment_Frontpage](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/LoanZn_FP3628.png)
+I felt it was important for me to speak about my usage of HTML, as this was my first time coding with it, and it showed me that if I wanted to develop  web applications, this is something I need to focus more time and effort on.
+
+So I've taken the initiative to start a course on HTML and wanted to explain to someone the HTML that appears in my code to further deepen my learning.
 
 ```python
 scroll_style = """
@@ -73,12 +74,13 @@ scroll_style = """
 
 
 ```
-The code above is a mixture of html and css used to create a scrollable container that will contain the table of loans.
-The html acts as the container, and the css define how we want thin container to act. What causes the contianer to scroll is because of the line overflow-y: auto; 
-which creates vertically crolling container. Another thing ot note is that setting the table width and th scrolable dv with to 100% allows the table to fill the container
-making it look built in.
+The code above is a mixture of HTML and CSS used to create a scrollable container that will contain the table of loans.
 
-### Why deos df have to be turnt to html and markdown have to be used?
+The HTML acts as the container, and the CSS defines how we want the container to act. What causes the container to scroll is because of the line overflow. -y: auto; 
+
+which creates a vertically scrolling container. Another thing to note is that setting the table width and the scrollable div width to 100% allows the table to fill the container making it look built-in.
+
+
 
 ```python
 custom_html = """
@@ -109,28 +111,36 @@ custom_html = """
 # Display the custom HTML
 st.components.v1.html(custom_html)
 ```
+The HTML begins by creating an <div> element with the class = banner, which serves as a container to hold the image. By using the iframe element, which is used to store external media like GIFs, we can place the GIF inside the container. 
+
+CSS then defines styling for the container, removing scrollability, allowing the image to take up 100% of the container, etc.
 
 ### Displayling loans using pandas
 
-treamlit inherintly suppots dataframes whne displaying tables, so i solution to turning an database into a table that can be displayed is by using python.
+Streamlit inherently supports dataframes when displaying tables, which makes it a good solution when turning a SQLite, database into a table.
+
+But, to use custom styling like making the container that holds the table scrollable, we must use markdown. This isn't possible, so instead the dataframe is converted into an HTML table.
+
+To do this, we first convert the DataFrame (df) into HTML using df.to_html(), giving us the HTML table. Using this, we render the frame, including the styled HTML it's placed in.
+
+
 
 ### How to alert board was implemented
+
 ![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/Hangman-w-Streamlit/main/images/Matplotlib_grid.png)
 
-Figuring out how to draw the hangman with the least amount of code was difficult, I was initially going to use conditions ( if statements ) and manually write out
-what needs to be drawn for each wrong guess. I knew this would take too long, so instead I implemeted a list of coordinates and used a for loop to iterate through each element in the list up to 
-the number of wrong tries. I would then call ax.plot(x, y), which takes tuples.
+First, the database is queried to get two sets of loans: those that are overdue and those due within five days. I use Python's datetime module to compare the repayment dates for each loan with the current date.
 
-I was hesitant using this method because I have to redraw all components again with every rerun including if the guesses are wrong, which I feel to be inefficient.
-So I plan on updateing my program to include conditionals on when to redraw everything and using session states to keep track of what already drawn.
+If the query function returns empty lists, there are no upcoming or overdue loan which the user is notified on. 
+
+If there are loans to display, I loop through the results and format each loan into a readable message using indexing to access specific fields (like loan ID, amount, due date, and reason).
+
+To display it i place the  alerts inside a st.text_area widget so users can scroll through them. 
 
 
 ## Future updates:
 ### A list of improvements:
-1. There are a few function like delete_val and edit_val, whom i haven't encorporated into the webapplication, given the time i allocated to it i could finsih thoe bit by then.
-Bu i will complete i and keep updating this system, i have to think alot into how to not over clutter the page with features and input bxes whihc i another reason why i ahven't
-implemented it yet.
-2. Allow multiple users, thi isn't built into streamlit and is an extenion i could have created a basic pasword system with the sql database but i wanted to do thing properly
-understand more about encryption and how to keep password afe before attempting it but  did create a skeleton class called user, to try and simulate the creation of a loanmanager
-for each user.
+
+1. There are a few functions like delete_val and edit_val that I haven’t incorporated into the web application yet. Given the time I allocated to it, I could'nt finish those parts by the deadline. I will complete them and continue updating the system. I’ve had to think carefully about how to avoid cluttering the page with too many features and input boxes, which is another reason I haven’t implemented them yet.
+2. Allowing multiple users: This isn't built into Streamlit by default and would require an extension. I could have created a basic password system using the SQL database, but I wanted to do it properly to understand more about encryption and how to keep passwords safe before attempting it. I did, however, create a skeleton class called User to simulate the creation of a LoanManager instance for each user.
 
