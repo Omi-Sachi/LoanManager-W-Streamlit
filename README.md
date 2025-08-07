@@ -24,7 +24,7 @@ Insert a new loan and repay an existing loan, as well as view a table containing
 
 ## My biggest challenges
 
-### Persitance loan history:
+### Persistant loan history:
 ![Scrollable_LoanHistory](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/Loan_DB.png)
 
 As discussed prior, Streamlit runs your entire Python script from top to bottom every time something in the app’s state changes. A way to combat this is to use a session state, which stores all data in your current session; this is great for a game like the hangman I built. But for a loan repayment system, the loans must remain even if the tab closes ~ something that doesn't occur with session state. So to retain the loan history, I moved from pandas, which I built the whole project in, to SQLite.
@@ -115,7 +115,7 @@ The HTML begins by creating an <div> element with the class = banner, which serv
 
 CSS then defines styling for the container, removing scrollability, allowing the image to take up 100% of the container, etc.
 
-### Displayling loans using pandas
+### Displaying loans using pandas
 
 Streamlit inherently supports dataframes when displaying tables, which makes it a good solution when turning a SQLite, database into a table.
 
@@ -127,7 +127,7 @@ To do this, we first convert the DataFrame (df) into HTML using df.to_html(), gi
 
 ### How to alert board was implemented
 
-![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/Hangman-w-Streamlit/main/images/Matplotlib_grid.png)
+![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/ScrollableAlerts.png)
 
 First, the database is queried to get two sets of loans: those that are overdue and those due within five days. I use Python's datetime module to compare the repayment dates for each loan with the current date.
 
