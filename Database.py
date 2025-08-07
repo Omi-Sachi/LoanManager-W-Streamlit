@@ -10,6 +10,7 @@ class DatabaseCommands:
         self.create_table()
 
     def create_table(self):
+        
         try:
             self.cursor.execute('''CREATE TABLE IF NOT EXISTS loan_history (
                                 loan_id INTEGER PRIMARY KEY,
@@ -18,9 +19,9 @@ class DatabaseCommands:
                                 Repay_Date DATE,
                                 Loan_Reason TEXT
                             )''')
-        except Exception as e:
-            pass
             self.conn.commit()
+        except Exception as e:
+            print(e)
 
 
     def insert_loan(self, amount, date, repay_date, loan_reason):
@@ -39,10 +40,10 @@ class DatabaseCommands:
 
     def edit_value(self,loan_id, field, value):
         try:
-            # IMPORTANT: validate field name to avoid SQL injection
+            #Check if the field exsists.
             if field not in ("Amount", "Date", "Repay_Date", "Loan_Reason"):
                 raise ValueError(f"Invalid field name: {field}")
-
+        # Query to update a table.
             query = f"UPDATE loan_history SET {field} = ? WHERE loan_id = ?"
             self.cursor.execute(query, (value, loan_id))
             if self.cursor.rowcount == 0:
@@ -94,7 +95,7 @@ class DatabaseCommands:
             query = "SELECT loan_id, Amount, Date, Repay_Date, Loan_Reason FROM loan_history"
             self.cursor.execute(query)
             results = self.cursor.fetchall()
-            # Returns list of tuples: [(loan_id, Amount, Date, Repay_Date, Loan_Reason), ...]
+
             return results
         except sqlite3.Error as e:
             print("Fetch all loans error:", e)
@@ -102,9 +103,7 @@ class DatabaseCommands:
 
 
     def update_loan_multiple_fields(self,loan_id, updates: dict):
-        """
-        updates: dict of {field: value} to update multiple columns at once.
-        """
+       
         try:
             allowed_fields = {"Amount", "Date", "Repay_Date", "Loan_Reason"}
             set_clauses = []
@@ -141,3 +140,4 @@ class DatabaseCommands:
         query = "SELECT * FROM loan_history WHERE Repay_Date >= ? ORDER BY Repay_Date ASC LIMIT ?"
         self.cursor.execute(query, (date.today().isoformat(), limit))
         return self.cursor.fetchall()
+
