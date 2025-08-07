@@ -125,7 +125,7 @@ To do this, we first convert the DataFrame (df) into HTML using df.to_html(), gi
 
 
 
-### How to alert board was implemented
+### How the alert board was implemented
 
 ![Game StartPage](https://raw.githubusercontent.com/Omi-Sachi/LoanManager-W-Streamlit/main/images/ScrollableAlerts.png)
 
